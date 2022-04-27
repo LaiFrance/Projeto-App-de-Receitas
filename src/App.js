@@ -14,32 +14,37 @@ import ExploreFoodsIngredients from './pages/ExploreFoodsIngredients';
 import ExploreFoodsNationalities from './pages/ExploreFoodsNationalities';
 import Profile from './pages/Profile';
 
+import FoodProvider from './context/Providers/FoodProvider';
+
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact component={ Login } />
-        <Route path="/foods" exact component={ Foods } />
-        <Route path="/drinks" exact component={ Drinks } />
-        <Route path="/explore" exact component={ Explore } />
-        <Route path="/explore/foods" exact component={ ExploreFoods } />
-        <Route path="/explore/drinks" exact component={ ExploreDrinks } />
-        <Route
-          path="/explore/foods/ingredients"
-          exact
-          component={ ExploreFoodsIngredients }
-        />
-        <Route
-          path="/explore/drinks/ingredients"
-          exact
-          component={ ExploreDrinksIngredients }
-        />
-        <Route
-          path="/explore/foods/nationalities"
-          exact
-          component={ ExploreFoodsNationalities }
-        />
-        <Route path="/profile" exact component={ Profile } />
+        <FoodProvider>
+          <Route path="/" exact component={ Login } />
+          <Route path="/foods" exact component={ Foods } />
+          <Route path="/drinks" exact component={ Drinks } />
+          <Route path="/explore" exact component={ Explore } />
+          <Route path="/explore/foods" exact component={ ExploreFoods } />
+          <Route path="/explore/drinks" exact component={ ExploreDrinks } />
+          <Route
+            path="/explore/foods/ingredients"
+            exact
+            component={ ExploreFoodsIngredients }
+          />
+          <Route
+            path="/explore/drinks/ingredients"
+            exact
+            component={ ExploreDrinksIngredients }
+          />
+          <Route
+            path="/explore/foods/nationalities"
+            exact
+            component={ ExploreFoodsNationalities }
+          />
+          <Route path="/profile" exact component={ Profile } />
+
+        </FoodProvider>
 
       </Switch>
       {/* <div className="meals">

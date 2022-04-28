@@ -1,14 +1,35 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { FoodContext } from '../context/Providers/FoodProvider';
 import BarraInferior from '../components/BarraInferior';
+import CategoryBtn from '../components/CategoryBtn';
+import { searchFoodByCategory } from '../services/index';
 
 export default function Foods() {
-  const { splicedFoods } = useContext(FoodContext);
+  const [toggleState, setToggleState] = useState(false);
+  const [foods, setFoods] = useState([]);
+  const { splicedFoods, categories } = useContext(FoodContext);
+
+  useEffect(() => {
+    setFoods(splicedFoods);
+  }, [splicedFoods]);
+
+  const handleCategoryBtn = async (category) => {
+    if (toggleState === true) {
+      setToggleState(!toggleState);
+      setFoods(splicedFoods);
+    }
+    if (toggleState === false) {
+      setToggleState(!toggleState);
+      const foodsbyCategory = await searchFoodByCategory(category);
+      setFoods(foodsbyCategory);
+    }
+  };
 
   return (
     <div>
       <h2>Foods</h2>
-      {splicedFoods.length > 0 ? splicedFoods.map((food, index) => (
+      <CategoryBtn data={ categories } func={ handleCategoryBtn } />
+      {foods.length > 0 ? foods.map((food, index) => (
         <div key={ index } data-testid={ `${index}-recipe-card` }>
           <img
             data-testid={ `${index}-card-img` }

@@ -6,20 +6,15 @@ const randomDrinksContext = createContext();
 const ExploreDrinksProvider = ({ children }) => {
   const [randomDrinks, setRandomDrinks] = useState([]);
 
-  // Falta pegar o id da receitar e colocar no history
-  useEffect(() => {
-    const getRandomDrinks = async () => {
-      try {
-        const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
-        const data = await response.json();
-        console.log(data);
-        setRandomDrinks(data.drinks);
-      } catch (error) {
-        throw new Error(error.message);
-      }
-    };
-    getRandomDrinks();
-  }, []);
+  const getRandomDrinks = async () => {
+    try {
+      const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+      const data = await response.json();
+      setRandomDrinks(data.drinks[0].idDrink);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
 
   return (
     <randomDrinksContext.Provider value={ { randomDrinks, getRandomDrinks } }>
@@ -28,8 +23,8 @@ const ExploreDrinksProvider = ({ children }) => {
   );
 };
 
-ExploreDrinksProvider.protoType = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+ExploreDrinksProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default ExploreDrinksProvider;

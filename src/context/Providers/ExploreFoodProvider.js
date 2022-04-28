@@ -6,21 +6,15 @@ const randomFoodContext = createContext();
 const ExploreFoodProvider = ({ children }) => {
   const [randomFood, setRandomFood] = useState([]);
 
-  // Falta pegar o id da receitar e colocar no history
-
-  useEffect(() => {
-    const getRandomFood = async () => {
-      try {
-        const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
-        const data = await response.json();
-        console.log(data);
-        setRandomFood(data.meals);
-      } catch (error) {
-        throw new Error(error.message);
-      }
-    };
-    getRandomFood();
-  }, []);
+  const getRandomFood = async () => {
+    try {
+      const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+      const data = await response.json();
+      setRandomFood(data.meals[0].idMeal);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
 
   return (
     <randomFoodContext.Provider value={ { randomFood, getRandomFood } }>
@@ -29,8 +23,8 @@ const ExploreFoodProvider = ({ children }) => {
   );
 };
 
-ExploreFoodProvider.protoType = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+ExploreFoodProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default ExploreFoodProvider;

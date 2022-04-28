@@ -4,7 +4,7 @@ import BarraInferior from '../components/BarraInferior';
 
 export default function ExploreDrinks() {
   const history = useHistory();
-  const [getRandomDrinks] = useContext();
+  const [getRandomDrinks, randomDrinks] = useContext(randomFoodContext);
   return (
     <div>
       <h2>ExploreDrinks</h2>
@@ -20,7 +20,7 @@ export default function ExploreDrinks() {
         data-testid="explore-surprise"
         onClick={ () => {
           getRandomDrinks();
-          history.push('/drinks/{id-da-receita}');
+          history.push(`/drinks/${randomDrinks}`);
         } }
       >
         Surprise me!

@@ -33,3 +33,21 @@ export async function getDrinks() {
   const newDrinks = response.drinks.slice(0, doze);
   return newDrinks;
 }
+
+export async function searchFoodByCategory(category) {
+  const doze = 12;
+  const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
+  const request = await fetch(URL);
+  const response = await request.json();
+  const foods = response.meals.slice(0, doze);
+  return foods;
+}
+
+export async function searchDrinkByCategory(category) {
+  const doze = 12;
+  const URL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`;
+  const request = await fetch(URL);
+  const response = await request.json();
+  const drinks = response.drinks.slice(0, doze);
+  return drinks;
+}

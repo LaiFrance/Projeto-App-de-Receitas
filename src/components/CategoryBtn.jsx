@@ -1,10 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function CategoryBtn({ data, func: handleCategoryBtn }) {
+export default function CategoryBtn({ data, func: handleCategoryBtn, all }) {
   return (
     <div>
-      <button type="button">All</button>
+      <button
+        data-testid="All-category-filter"
+        onClick={ all }
+        type="button"
+      >
+        All
+
+      </button>
       {data.length > 0 && data.map((category, index) => (
         <button
           onClick={ (e) => handleCategoryBtn(e.target.name) }
@@ -24,5 +31,5 @@ export default function CategoryBtn({ data, func: handleCategoryBtn }) {
 CategoryBtn.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   func: PropTypes.func.isRequired,
-
+  all: PropTypes.func.isRequired,
 };

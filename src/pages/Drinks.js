@@ -5,16 +5,23 @@ import CategoryBtn from '../components/CategoryBtn';
 import { searchDrinkByCategory } from '../services/index';
 
 export default function Drinks() {
+  const [toggleState, setToggleState] = useState(false);
   const [drinks, setDrinks] = useState([]);
   const { splicedDrinks, categories } = useContext(DrinkContext);
-
   useEffect(() => {
     setDrinks(splicedDrinks);
   }, [splicedDrinks]);
 
   const handleCategoryBtn = async (category) => {
-    const drinksbyCategory = await searchDrinkByCategory(category);
-    setDrinks(drinksbyCategory);
+    if (toggleState === true) {
+      setToggleState(!toggleState);
+      setDrinks(splicedDrinks);
+    }
+    if (toggleState === false) {
+      setToggleState(!toggleState);
+      const drinksbyCategory = await searchDrinkByCategory(category);
+      setDrinks(drinksbyCategory);
+    }
   };
 
   return (

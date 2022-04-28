@@ -5,6 +5,7 @@ import CategoryBtn from '../components/CategoryBtn';
 import { searchFoodByCategory } from '../services/index';
 
 export default function Foods() {
+  const [toggleState, setToggleState] = useState(false);
   const [foods, setFoods] = useState([]);
   const { splicedFoods, categories } = useContext(FoodContext);
 
@@ -13,8 +14,15 @@ export default function Foods() {
   }, [splicedFoods]);
 
   const handleCategoryBtn = async (category) => {
-    const foodsbyCategory = await searchFoodByCategory(category);
-    setFoods(foodsbyCategory);
+    if (toggleState === true) {
+      setToggleState(!toggleState);
+      setFoods(splicedFoods);
+    }
+    if (toggleState === false) {
+      setToggleState(!toggleState);
+      const foodsbyCategory = await searchFoodByCategory(category);
+      setFoods(foodsbyCategory);
+    }
   };
 
   return (

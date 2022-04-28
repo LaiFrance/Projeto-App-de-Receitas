@@ -12,7 +12,6 @@ import ExploreDrinksIngredients from './pages/ExploreDrinksIngredients';
 import ExploreFoodsIngredients from './pages/ExploreFoodsIngredients';
 import ExploreFoodsNationalities from './pages/ExploreFoodsNationalities';
 import Profile from './pages/Profile';
-
 import FoodProvider from './context/Providers/FoodProvider';
 import DrinksProvider from './context/Providers/DrinksProvider';
 
@@ -24,6 +23,8 @@ function App() {
           <DrinksProvider>
             <Route path="/" exact component={ Login } />
             <Route path="/foods" exact component={ Foods } />
+            <Route path="/foods/:id" exact component={ ExploreFoods } />
+            <Route path="/drinks/:id" exact component={ ExploreDrinks } />
             <Route path="/drinks" exact component={ Drinks } />
             <Route path="/explore" exact component={ Explore } />
             <Route path="/explore/foods" exact component={ ExploreFoods } />

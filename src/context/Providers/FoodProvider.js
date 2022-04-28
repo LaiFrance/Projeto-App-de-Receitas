@@ -1,37 +1,25 @@
 import React, { useState, useEffect, createContext } from 'react';
 import PropTypes from 'prop-types';
+import { getMeals, getFoodCategories } from '../../services/index';
 
 export const FoodContext = createContext();
 
 export default function FoodProvider({ children }) {
-  const [foods, setFoods] = useState([]);
   const [splicedFoods, setSplicedFoods] = useState([]); // primeiros doze itens
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    async function getMeals() {
-      try {
-        const URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-        // requisição genérica das comidas
-        const request = await fetch(URL);
-        const response = await request.json();
-        setFoods(response.meals);
-      } catch (err) {
-        throw new Error(err.message);
-      }
-    }
-    getMeals();
+    const firstMeals = async () => {
+      const info = await getMeals();
+      const category = await getFoodCategories();
+      setCategories(category);
+      setSplicedFoods(info);
+    };
+    firstMeals();
   }, []);
 
-  useEffect(() => {
-    const doze = 12;
-    if (foods.length > 0) {
-      const newFoods = foods.slice(0, doze);
-      setSplicedFoods(newFoods);
-    }
-  }, [foods]);
-
   return (
-    <FoodContext.Provider value={ { foods, splicedFoods } }>
+    <FoodContext.Provider value={ { splicedFoods, categories } }>
       {children}
     </FoodContext.Provider>
   );

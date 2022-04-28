@@ -1,0 +1,35 @@
+export async function getFoodCategories() {
+  const cinco = 5;
+  const URL = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
+  const request = await fetch(URL);
+  const response = await request.json();
+  const categories = response.meals.slice(0, cinco);
+  return categories;
+}
+
+export async function getDrinkCategories() {
+  const cinco = 5;
+  const URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+  const request = await fetch(URL);
+  const response = await request.json();
+  const categories = response.drinks.slice(0, cinco);
+  return categories;
+}
+
+export async function getMeals() {
+  const doze = 12;
+  const URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+  const request = await fetch(URL);
+  const response = await request.json();
+  const newFoods = response.meals.slice(0, doze);
+  return newFoods;
+}
+
+export async function getDrinks() {
+  const doze = 12;
+  const URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+  const request = await fetch(URL);
+  const response = await request.json();
+  const newDrinks = response.drinks.slice(0, doze);
+  return newDrinks;
+}

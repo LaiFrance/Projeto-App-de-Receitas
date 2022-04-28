@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useMyContext } from '../context/Providers/ExploreProvider';
 import BarraInferior from '../components/BarraInferior';
 
 export default function ExploreDrinks() {
   const history = useHistory();
-  const [getRandomDrinks, randomDrinks] = useContext(randomFoodContext);
+  const { randomDrinks } = useMyContext();
   return (
     <div>
       <h2>ExploreDrinks</h2>
@@ -19,7 +20,6 @@ export default function ExploreDrinks() {
         type="button"
         data-testid="explore-surprise"
         onClick={ () => {
-          getRandomDrinks();
           history.push(`/drinks/${randomDrinks}`);
         } }
       >

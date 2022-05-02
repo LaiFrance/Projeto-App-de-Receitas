@@ -1,0 +1,15 @@
+.sectioncocktail-section {
+  justify-content: center;
+  text-align: center;
+}
+
+.drink-image {
+  border-style: none;
+  height: 700px;
+  vertical-align: middle;
+  width: 700px;
+}
+
+li {
+  font-size: 30px;
+}

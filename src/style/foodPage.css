@@ -1,0 +1,30 @@
+button {
+  background-color: red;
+  border: 1px solid var(--blue);
+  border-radius: 20px;
+  color: var(--white);
+  cursor: pointer;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+  padding: 0.9rem 4rem;
+  text-transform: uppercase;
+
+}
+
+.recipe-card-image {
+  border-radius: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0 50px 100px -20px;
+  width: 20%;
+
+}
+
+p {
+  font-size: 30px;
+  margin-bottom: 2rem;
+  margin-left: 90px;
+  margin-top: 20px;
+}
+
+footer {
+  background-color: #bd3e31;
+}

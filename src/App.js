@@ -14,6 +14,8 @@ import ExploreFoodsNationalities from './pages/ExploreFoodsNationalities';
 import Profile from './pages/Profile';
 import FoodProvider from './context/Providers/FoodProvider';
 import DrinksProvider from './context/Providers/DrinksProvider';
+import RecipeDrinkDetails from './pages/RecipeDrinkDetails';
+import RecipeMealDetails from './pages/RecipeMealDetails';
 
 function App() {
   return (
@@ -29,6 +31,16 @@ function App() {
             <Route path="/explore" exact component={ Explore } />
             <Route path="/explore/foods" exact component={ ExploreFoods } />
             <Route path="/explore/drinks" exact component={ ExploreDrinks } />
+            <Route
+              path="/drinks/:id"
+              exact
+              component={ RecipeDrinkDetails }
+            />
+            <Route
+              path="/foods/:id"
+              exact
+              component={ RecipeMealDetails }
+            />
             <Route
               path="/explore/foods/ingredients"
               exact

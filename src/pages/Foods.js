@@ -3,6 +3,7 @@ import { FoodContext } from '../context/Providers/FoodProvider';
 import BarraInferior from '../components/BarraInferior';
 import CategoryBtn from '../components/CategoryBtn';
 import { searchFoodByCategory } from '../services/index';
+import '../style/foodPage.css';
 
 export default function Foods() {
   const [toggleState, setToggleState] = useState(false);
@@ -50,12 +51,17 @@ export default function Foods() {
   };
 
   return (
-    <div>
+    <div className="container-foods">
       <h2>Foods</h2>
-      <CategoryBtn data={ categories } func={ handleCategoryBtn } all={ handleAllBtn } />
+      <CategoryBtn
+        data={ categories }
+        func={ handleCategoryBtn }
+        all={ handleAllBtn }
+      />
       {foods.length > 0 ? foods.map((food, index) => (
         <div key={ index } data-testid={ `${index}-recipe-card` }>
           <img
+            className="recipe-card-image"
             data-testid={ `${index}-card-img` }
             src={ food.strMealThumb }
             alt={ `imagem de ${food.strMeal}` }

@@ -7,6 +7,8 @@ export const DrinkContext = createContext();
 export default function DrinkProvider({ children }) {
   const [splicedDrinks, setSplicedDrinks] = useState([]); // primeiros doze itens
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = React.useState();
+  const [cocktail, setCocktail] = React.useState(null);
 
   useEffect(() => {
     const firstDrinks = async () => {
@@ -19,7 +21,14 @@ export default function DrinkProvider({ children }) {
   }, []);
 
   return (
-    <DrinkContext.Provider value={ { splicedDrinks, categories } }>
+    <DrinkContext.Provider
+      value={ { splicedDrinks,
+        categories,
+        loading,
+        setLoading,
+        cocktail,
+        setCocktail } }
+    >
       {children}
     </DrinkContext.Provider>
   );

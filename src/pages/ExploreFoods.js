@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMyContext } from '../context/Providers/ExploreProvider';
 import BarraInferior from '../components/BarraInferior';
+import Header from '../components/Header';
 
 export default function ExploreFoods() {
   const history = useHistory();
@@ -9,7 +10,10 @@ export default function ExploreFoods() {
 
   return (
     <div>
-      <h2>ExploreFoods</h2>
+      <div className="header-container">
+        <Header pageName="Explore Foods" />
+      </div>
+
       <button
         type="button"
         data-testid="explore-by-ingredient"

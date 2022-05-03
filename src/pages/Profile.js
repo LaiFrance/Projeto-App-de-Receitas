@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import BarraInferior from '../components/BarraInferior';
+import Header from '../components/Header';
 
 export default function Profile() {
   const [email, setEmail] = useState('');
   const history = useHistory();
-
+  // optional chainning
   useEffect(() => {
     const emailInStorage = JSON.parse(localStorage.getItem('user'));
-    setEmail(emailInStorage.email);
+    setEmail(emailInStorage?.email);
   }, []);
 
   const logOff = () => {
@@ -32,7 +33,9 @@ export default function Profile() {
 
   return (
     <div>
-      <h2>Profile</h2>
+      <div className="header-container">
+        <Header pageName="Profile" />
+      </div>
       {/* E-mail do usuário visível */}
       <form action="POST">
         {email !== undefined ? (

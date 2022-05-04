@@ -7,11 +7,13 @@ import './Header.css';
 
 function Header({ pageName }) {
   const [isSearch, setIsSearch] = useState(true);
+  const [isClick, setIsClick] = useState(false);
   const history = useHistory();
 
   const redirectAction = () => {
     history.push('/profile');
   };
+
   useEffect(() => {
     const searchVerification = () => {
       if (pageName === 'Foods') return setIsSearch(true);
@@ -23,24 +25,38 @@ function Header({ pageName }) {
   }, [pageName]);
 
   return (
-    <div className="header-container">
-      <button
-        type="button"
-        onClick={ redirectAction }
-      >
-        <img
-          src={ profileIcon }
-          alt="profileIcon"
-          data-testid="profile-top-btn"
-        />
-      </button>
-      <h2 data-testid="page-title">{pageName}</h2>
-      { isSearch && <img
-        src={ searchIcon }
-        alt="search-icon"
-        data-testid="search-top-btn"
+    <>
+      <div className="header-container">
+        <button
+          type="button"
+          onClick={ redirectAction }
+        >
+          <img
+            src={ profileIcon }
+            alt="profileIcon"
+            data-testid="profile-top-btn"
+          />
+        </button>
+        <h2 data-testid="page-title">{pageName}</h2>
+        {isSearch
+          && (
+            <button
+              type="button"
+              onClick={ () => setIsClick(!isClick) }
+            >
+              <img
+                src={ searchIcon }
+                alt="search-icon"
+                data-testid="search-top-btn"
+              />
+            </button>)}
+      </div>
+      {isClick && <input
+        type="text"
+        data-testid="search-input"
       />}
-    </div>
+    </>
+
   );
 }
 

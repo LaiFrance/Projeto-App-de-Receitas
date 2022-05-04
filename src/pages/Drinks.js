@@ -4,6 +4,7 @@ import { DrinkContext } from '../context/Providers/DrinksProvider';
 import BarraInferior from '../components/BarraInferior';
 import CategoryBtn from '../components/CategoryBtn';
 import { searchDrinkByCategory } from '../services/index';
+import Header from '../components/Header';
 
 export default function Drinks() {
   const [toggleState, setToggleState] = useState(false);
@@ -60,7 +61,9 @@ export default function Drinks() {
   console.log(drinks);
   return (
     <div>
-      <h2>Drinks</h2>
+      <div className="header-container">
+        <Header pageName="Drinks" />
+      </div>
       <CategoryBtn data={ categories } func={ handleCategoryBtn } all={ handleAllBtn } />
       {drinks.length > 0 ? drinks.map((drink, index) => (
         <div

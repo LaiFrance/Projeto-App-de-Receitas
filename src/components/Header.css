@@ -1,0 +1,8 @@
+.header-container {
+  align-items: center;
+  background: #ffab62;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  width: 100%;
+}

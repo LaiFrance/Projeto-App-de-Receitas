@@ -26,7 +26,6 @@ export default function Drinks() {
 
   const handleRedirectDrinkCard = (id) => {
     history.push(`/drinks/${id}`);
-    console.log(id);
   };
 
   const handleCategoryBtn = async (category) => {

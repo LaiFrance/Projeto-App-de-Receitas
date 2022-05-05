@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
-export default function DoneRecipesCard({ recipe, index }) {
+export default function DoneRecipesCard({ recipe, index,
+  addToFavorites, removeFromFavorites, favorites }) {
   const [copied, setCopied] = useState(false);
 
   const shareFoods = (id) => {
@@ -36,14 +39,12 @@ export default function DoneRecipesCard({ recipe, index }) {
               data-testid={ `${index}-horizontal-top-text` }
             >
               {`${recipe.nationality} - ${recipe.category}`}
-
             </span>
             <br />
             <span
               data-testid={ `${index}-horizontal-done-date` }
             >
               {recipe.doneDate}
-
             </span>
             {copied ? (
               <button
@@ -53,22 +54,46 @@ export default function DoneRecipesCard({ recipe, index }) {
                 data-testid={ `${index}-horizontal-share-btn` }
               >
                 Link copied!
-
               </button>
             ) : (
-              <button
-                type="button"
-                className="shareBtn"
-                onClick={ () => shareFoods(recipe.id) }
-              >
-                <img
-                  data-testid={ `${index}-horizontal-share-btn` }
-                  src={ shareIcon }
-                  alt="share"
-                />
-              </button>
+              <div>
+                <button
+                  type="button"
+                  className="shareBtn"
+                  onClick={ () => shareFoods(recipe.id) }
+                >
+                  <img
+                    data-testid={ `${index}-horizontal-share-btn` }
+                    src={ shareIcon }
+                    alt="share"
+                  />
+                </button>
+                {favorites?.find((fav) => fav.id === recipe.id) ? (
+                  <button
+                    type="button"
+                    onClick={ () => removeFromFavorites(recipe) }
+                  >
+                    <img
+                      src={ blackHeartIcon }
+                      data-testid={ `${index}-horizontal-favorite-btn` }
+                      alt="favorited"
+                    />
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={ () => addToFavorites(recipe) }
+                  >
+                    <img
+                      src={ whiteHeartIcon }
+                      data-testid={ `${index}-horizontal-favorite-btn` }
+                      alt="not favorite yet"
+                    />
+                  </button>
+                )}
+              </div>
             )}
-            {recipe.tags.length > 0 && recipe.tags.slice(0, 2).map((tag) => (
+            {recipe.tags?.length > 0 && recipe.tags.slice(0, 2).map((tag) => (
               <span
                 key={ tag }
                 data-testid={ `${index}-${tag}-horizontal-tag` }
@@ -112,19 +137,45 @@ export default function DoneRecipesCard({ recipe, index }) {
 
               </button>
             ) : (
-              <button
-                className="shareBtn"
-                type="button"
-                onClick={ () => shareDrinks(recipe.id) }
-              >
-                <img
-                  data-testid={ `${index}-horizontal-share-btn` }
-                  src={ shareIcon }
-                  alt="share"
-                />
-              </button>
+              <div>
+                <button
+                  className="shareBtn"
+                  type="button"
+                  onClick={ () => shareDrinks(recipe.id) }
+                >
+                  <img
+                    data-testid={ `${index}-horizontal-share-btn` }
+                    src={ shareIcon }
+                    alt="share"
+                  />
+                </button>
+
+                {favorites?.find((fav) => fav.id === recipe.id) ? (
+                  <button
+                    type="button"
+                    onClick={ () => removeFromFavorites(recipe) }
+                  >
+                    <img
+                      src={ blackHeartIcon }
+                      data-testid={ `${index}-horizontal-favorite-btn` }
+                      alt="favorited"
+                    />
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={ () => addToFavorites(recipe) }
+                  >
+                    <img
+                      src={ whiteHeartIcon }
+                      data-testid={ `${index}-horizontal-favorite-btn` }
+                      alt="not favorite yet"
+                    />
+                  </button>
+                )}
+              </div>
             )}
-            {recipe.tags.length > 0 && recipe.tags.map((drinktag) => (
+            {recipe.tags?.length > 0 && recipe.tags.map((drinktag) => (
               <span
                 key={ drinktag }
                 data-testid={ `${index}-${drinktag}-horizontal-tag` }
@@ -153,4 +204,7 @@ DoneRecipesCard.propTypes = {
     tags: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   index: PropTypes.number.isRequired,
+  addToFavorites: PropTypes.func.isRequired,
+  removeFromFavorites: PropTypes.func.isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

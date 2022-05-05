@@ -16,13 +16,13 @@ export default function ExploreDrinks() {
       >
         By Ingredient
       </button>
-      <button
+      {/* <button
         type="button"
         data-testid="explore-by-nationality"
         onClick={ () => history.push('/explore/drinks/nationalities') }
       >
         By Nationality
-      </button>
+      </button> */}
       <button
         type="button"
         data-testid="explore-surprise"

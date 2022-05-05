@@ -63,7 +63,9 @@ export default function Foods() {
       <div className="header-container">
         <Header pageName="Foods" />
       </div>
-      <BarraBusca />
+      <div>
+        <BarraBusca />
+      </div>
       <CategoryBtn
         data={ categories }
         func={ handleCategoryBtn }

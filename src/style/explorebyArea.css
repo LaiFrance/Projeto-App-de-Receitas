@@ -1,0 +1,158 @@
+.explore-by-area-dropdown {
+  margin-block-end: 50px;
+  margin-left: 20px;
+  margin-top: 80px;
+
+}
+
+select {
+  background-color: #b1beca;
+  border-radius: 0.25em;
+  display: flex;
+  height: 3em;
+  overflow: hidden;
+  position: relative;
+  transition: 0.25s all ease;
+  width: 20em;
+}
+
+
+select:hover:after {
+  color: #beb5a5;
+}
+
+.card-name {
+  background-color: black;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  height: 20px;
+  margin-top: 5px;
+  opacity: 0.8;
+  padding: 2px;
+  text-align: center;
+  width: 250px;
+}
+
+
+.areafood {
+  align-items: center;
+  background: rgb(207, 47, 19);
+  border-radius: 2px;
+  box-shadow: 4px 4px 20px -2px rgba(0, 0, 0, 0.35);
+  color: ivory;
+  display: flex;
+  flex: 2;
+  font-weight: 200;
+  height: 40px;
+  justify-content: center;
+  position: relative;
+  text-transform: uppercase;
+  transition: all 0.4s;
+}
+
+.areafood:hover {
+  box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px);
+}
+
+.areafood:hover:active {
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.35);
+  transform: translateY(10px);
+}
+
+
+.recipes-list {
+  column-count: 4;
+  column-gap: 34px;
+  column-rule: 2px hidden black;
+  margin-bottom: 50px;
+  margin-left: 20px;
+  margin-top: 30px;
+}
+
+.card-img {
+  box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px , rgba(0, 0, 0, 0.3) 0 7px 13px -3px;
+  width: 250px;
+}
+
+
+/* .card-img:nth-child( 1 ) {
+  align-self: auto;
+  display: block;
+  flex-basis: auto;
+  flex-grow: 0;
+  order: 0;
+}
+
+.card-img:nth-child( 2 ) {
+  align-self: auto;
+  display: block;
+  flex-basis: auto;
+  flex-grow: 0;
+  order: 0;
+}
+
+.flex-items:nth-child( 3 ) {
+  align-self: auto;
+  display: block;
+  flex-basis: auto;
+  flex-grow: 0;
+  order: 0;
+}
+
+.flex-items:nth-child( 4 ) {
+  align-self: auto;
+  display: block;
+  flex-basis: auto;
+  flex-grow: 0;
+  order: 0;
+}
+
+.flex-items:nth-child( 5 ) {
+  align-self: auto;
+  display: block;
+  flex-basis: auto;
+  flex-grow: 0;
+  order: 0;
+}
+
+.flex-items:nth-child( 6 ) {
+  align-self: auto;
+  display: block;
+  flex-basis: auto;
+  flex-grow: 0;
+  order: 0;
+}
+
+.flex-items:nth-child( 7 ) {
+  align-self: auto;
+  display: block;
+  flex-basis: auto;
+  flex-grow: 0;
+  order: 0;
+}
+
+.flex-items:nth-child( 8 ) {
+  align-self: auto;
+  display: block;
+  flex-basis: auto;
+  flex-grow: 0;
+  order: 0;
+}
+
+.flex-items:nth-child( 9 ) {
+  align-self: auto;
+  display: block;
+  flex-basis: auto;
+  flex-grow: 0;
+  order: 0;
+}
+
+.card-img:nth-child( 10 ) {
+  align-self: auto;
+  display: block;
+  flex-basis: auto;
+  flex-grow: 0;
+  order: 0;
+} */

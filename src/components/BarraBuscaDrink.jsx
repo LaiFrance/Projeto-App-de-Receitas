@@ -24,10 +24,17 @@ export default function BarraBusca() {
     }
     const response = await fetch(apiSelect);
     const data = await response.json();
-    console.log(data);
     return setSplicedDrinks(data.drinks);
   };
 
+  // useEffect(() => {
+  //   const itemNotFound = async () => {
+  //     if (await spliceDrinks === null) {
+  //       global.alert('Sorry, we haven\'t found any recipes for these filters.');
+  //     }
+  //   };
+  //   itemNotFound();
+  // }, [spliceDrinks]);
   return (
     <div>
       <div className="searchInput">

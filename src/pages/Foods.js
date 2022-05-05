@@ -58,6 +58,7 @@ export default function Foods() {
     }
   };
 
+  const doze = 12;
   return (
     <div className="container-foods">
       <div className="header-container">
@@ -72,24 +73,25 @@ export default function Foods() {
         all={ handleAllBtn }
       />
       {foods.length > 0 ? foods.map((food, index) => (
-        <div
-          key={ index }
-          data-testid={ `${index}-recipe-card` }
-        >
-          <button
-            type="button"
-            name={ food.idMeal }
-            onClick={ (e) => handleRedirectCard(e.target.name) }
+        index < doze && (
+          <div
+            key={ index }
+            data-testid={ `${index}-recipe-card` }
           >
-            <img
-              className="recipe-card-image"
-              data-testid={ `${index}-card-img` }
-              src={ food.strMealThumb }
-              alt={ `imagem de ${food.strMeal}` }
-            />
-          </button>
-          <p data-testid={ `${index}-card-name` }>{food.strMeal}</p>
-        </div>
+            <button
+              type="button"
+              name={ food.idMeal }
+              onClick={ (e) => handleRedirectCard(e.target.name) }
+            >
+              <img
+                className="recipe-card-image"
+                data-testid={ `${index}-card-img` }
+                src={ food.strMealThumb }
+                alt={ `imagem de ${food.strMeal}` }
+              />
+            </button>
+            <p data-testid={ `${index}-card-name` }>{food.strMeal}</p>
+          </div>)
       )) : ''}
       <BarraInferior />
     </div>

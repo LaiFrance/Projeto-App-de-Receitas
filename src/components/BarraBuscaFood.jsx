@@ -25,6 +25,15 @@ export default function BarraBusca() {
     return setSplicedFoods(data.meals);
   };
 
+  // useEffect(() => {
+  //   const itemNotFound = async () => {
+  //     if (await spliceFoods.length === 0) {
+  //       global.alert('Sorry, we haven\'t found any recipes for these filters.');
+  //     }
+  //   };
+  //   itemNotFound();
+  // }, [spliceFoods]);
+
   return (
     <div>
       <div className="searchInput">

@@ -68,7 +68,7 @@ export default function Drinks() {
       </div>
       <BarraBuscaDrink />
       <CategoryBtn data={ categories } func={ handleCategoryBtn } all={ handleAllBtn } />
-      {drinks.length > 0 ? drinks.map((drink, index) => (
+      {(drinks && drinks.length > 0) ? drinks.map((drink, index) => (
         index < doze && (
           <div
             key={ index }

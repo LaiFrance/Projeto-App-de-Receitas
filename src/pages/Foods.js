@@ -72,7 +72,7 @@ export default function Foods() {
         func={ handleCategoryBtn }
         all={ handleAllBtn }
       />
-      {foods.length > 0 ? foods.map((food, index) => (
+      {(foods && foods.length > 0) ? foods.map((food, index) => (
         index < doze && (
           <div
             key={ index }

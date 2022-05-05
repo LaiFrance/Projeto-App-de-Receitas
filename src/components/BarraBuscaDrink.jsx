@@ -4,7 +4,7 @@ import { useDataDrinks } from '../context/Providers/DrinksProvider';
 
 export default function BarraBusca() {
   const { isClick } = useDataFood();
-  const { setSplicedDrinks } = useDataDrinks();
+  const { spliceDrinks, setSplicedDrinks } = useDataDrinks();
   const [search, setSearch] = useState();
   const [inputText, setInputText] = useState();
 
@@ -27,14 +27,12 @@ export default function BarraBusca() {
     return setSplicedDrinks(data.drinks);
   };
 
-  // useEffect(() => {
-  //   const itemNotFound = async () => {
-  //     if (await spliceDrinks === null) {
-  //       global.alert('Sorry, we haven\'t found any recipes for these filters.');
-  //     }
-  //   };
-  //   itemNotFound();
-  // }, [spliceDrinks]);
+  const itemNotFound = () => {
+    if (!spliceDrinks || spliceDrinks.length === 0) {
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
+  };
+
   return (
     <div>
       <div className="searchInput">
@@ -77,7 +75,10 @@ export default function BarraBusca() {
       <button
         type="button"
         data-testid="exec-search-btn"
-        onClick={ () => getRadioApi() }
+        onClick={ () => {
+          getRadioApi();
+          itemNotFound();
+        } }
       >
         Search
       </button>

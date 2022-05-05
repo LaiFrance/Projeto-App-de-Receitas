@@ -5,6 +5,7 @@ import BarraInferior from '../components/BarraInferior';
 import CategoryBtn from '../components/CategoryBtn';
 import { searchDrinkByCategory } from '../services/index';
 import Header from '../components/Header';
+import BarraBuscaDrink from '../components/BarraBuscaDrink';
 
 export default function Drinks() {
   const [toggleState, setToggleState] = useState(false);
@@ -64,6 +65,7 @@ export default function Drinks() {
       <div className="header-container">
         <Header pageName="Drinks" />
       </div>
+      <BarraBuscaDrink />
       <CategoryBtn data={ categories } func={ handleCategoryBtn } all={ handleAllBtn } />
       {drinks.length > 0 ? drinks.map((drink, index) => (
         <div

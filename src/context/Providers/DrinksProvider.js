@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { getDrinks, getDrinkCategories } from '../../services/index';
 
@@ -20,19 +20,24 @@ export default function DrinkProvider({ children }) {
     firstDrinks();
   }, []);
 
+  const allInformations = {
+    splicedDrinks,
+    setSplicedDrinks,
+    categories,
+    loading,
+    setLoading,
+    cocktail,
+    setCocktail,
+  };
+
   return (
-    <DrinkContext.Provider
-      value={ { splicedDrinks,
-        categories,
-        loading,
-        setLoading,
-        cocktail,
-        setCocktail } }
-    >
+    <DrinkContext.Provider value={ allInformations }>
       {children}
     </DrinkContext.Provider>
   );
 }
+
+export const useDataDrinks = () => useContext(DrinkContext);
 
 DrinkProvider.propTypes = {
   children: PropTypes.node.isRequired,

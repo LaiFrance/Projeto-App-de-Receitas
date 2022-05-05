@@ -22,7 +22,6 @@ export default function BarraBusca() {
     }
     const response = await fetch(apiSelect);
     const data = await response.json();
-    console.log(data.meals);
     return setSplicedFoods(data.meals);
   };
 
@@ -72,7 +71,6 @@ export default function BarraBusca() {
       >
         Search
       </button>
-      {/* {apiRadio.map((e) => <p key={ e }>{e}</p>)} */}
     </div>
   );
 }

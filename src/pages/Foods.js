@@ -6,7 +6,7 @@ import CategoryBtn from '../components/CategoryBtn';
 import { searchFoodByCategory } from '../services/index';
 import '../style/foodPage.css';
 import Header from '../components/Header';
-import BarraBusca from '../components/BarraBusca';
+import BarraBuscaFood from '../components/BarraBuscaFood';
 
 export default function Foods() {
   const [toggleState, setToggleState] = useState(false);
@@ -64,7 +64,7 @@ export default function Foods() {
         <Header pageName="Foods" />
       </div>
       <div>
-        <BarraBusca />
+        <BarraBuscaFood />
       </div>
       <CategoryBtn
         data={ categories }

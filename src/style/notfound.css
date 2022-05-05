@@ -1,0 +1,40 @@
+.onda {
+  background-color: red;
+  height: 15vh;
+  margin-bottom: -7px;
+  max-height: 150px;
+  min-height: 100px;
+  position: relative;
+  width: 100%;
+}
+
+@font-face {
+  font-family: Barrio;
+  src: url('../style/membros/Foodpacker.otf');
+}
+
+.notfound {
+  background: rgb(228, 228, 203);
+  font-size: 5em;
+  left: 50%;
+  margin: 0;
+  margin-right: -50%;
+  opacity: 0.6;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.foodgif {
+  border-radius: 50%;
+  font-size: 10em;
+  height: 65%;
+  left: 50%;
+  margin: 0;
+  margin-right: -50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 4em;
+
+}

@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import '../style/loginPage.css';
+import laise from '../style/membros/laise.jpeg';
+import igor from '../style/membros/igor.jpeg';
+import ygor from '../style/membros/ygor.jpeg';
+import cleyton from '../style/membros/cleyton.jpeg';
+import leticia from '../style/membros/leticia.jpeg';
 
 export default function Login() {
   const history = useHistory();
@@ -92,7 +97,40 @@ export default function Login() {
           </button>
         </form>
       </div>
-
+      <nav membrosnav>
+        <a href="https://www.linkedin.com/in/cleyton-alves/" target="_blank" rel="noreferrer">
+          <img
+            className="membros"
+            src={ cleyton }
+            alt="grupo"
+            width="60px"
+            height="60px"
+          />
+        </a>
+        <a href="https://www.linkedin.com/in/igorfellows/" target="_blank" rel="noreferrer">
+          <img className="membros" src={ igor } alt="grupo" width="60px" height="60px" />
+        </a>
+        <a
+          href="www.linkedin.com/in/laise-france
+"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img className="membros" src={ laise } alt="grupo" width="60px" height="60px" />
+        </a>
+        <a href="https://www.linkedin.com/in/leticiacotta/" target="_blank" rel="noreferrer">
+          <img
+            className="membros"
+            src={ leticia }
+            alt="grupo"
+            width="60px"
+            height="60px"
+          />
+        </a>
+        <a href="https://www.linkedin.com/in/igormazetti/" target="_blank" rel="noreferrer">
+          <img className="membros" src={ ygor } alt="grupo" width="60px" height="60px" />
+        </a>
+      </nav>
     </>
   );
 }

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDataFood } from '../context/Providers/FoodProvider';
 
 export default function BarraBusca() {
-  const { isClick, setSplicedFoods, spliceFoods } = useDataFood();
+  const { push } = useHistory();
+  const { isClick, setSplicedFoods, splicedFoods } = useDataFood();
   const [search, setSearch] = useState();
   const [inputText, setInputText] = useState();
 
@@ -22,14 +24,18 @@ export default function BarraBusca() {
     }
     const response = await fetch(apiSelect);
     const data = await response.json();
-    return setSplicedFoods(data.meals);
-  };
-
-  const itemNotFound = () => {
-    if (!spliceFoods || spliceFoods.length === 0) {
+    console.log(data);
+    if (!data.meals) {
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
+    return data.meals ? setSplicedFoods(data.meals) : setSplicedFoods([]);
   };
+
+  useEffect(() => {
+    if (splicedFoods.length === 1) {
+      push(`/foods/${splicedFoods[0].idMeal}`);
+    }
+  }, [splicedFoods]);
 
   return (
     <div>
@@ -75,7 +81,6 @@ export default function BarraBusca() {
         data-testid="exec-search-btn"
         onClick={ () => {
           getRadioApi();
-          itemNotFound();
         } }
       >
         Search

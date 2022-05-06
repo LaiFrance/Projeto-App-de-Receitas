@@ -18,11 +18,11 @@ export default function BarraBusca() {
     if (search === 'name') {
       apiSelect = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText}`;
     }
+    if (search === 'letter' && inputText.length > 1) {
+      return global.alert('Your search must have only 1 (one) character');
+    }
     if (search === 'letter') {
       apiSelect = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${inputText}`;
-    }
-    if (search === 'letter' && inputText.length > 1) {
-      global.alert('Your search must have only 1 (one) character');
     }
     const response = await fetch(apiSelect);
     const data = await response.json();

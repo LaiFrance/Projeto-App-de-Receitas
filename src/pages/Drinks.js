@@ -5,6 +5,7 @@ import BarraInferior from '../components/BarraInferior';
 import CategoryBtn from '../components/CategoryBtn';
 import { searchDrinkByCategory } from '../services/index';
 import Header from '../components/Header';
+import BarraBuscaDrink from '../components/BarraBuscaDrink';
 
 export default function Drinks() {
   const [toggleState, setToggleState] = useState(false);
@@ -58,32 +59,35 @@ export default function Drinks() {
   };
 
   console.log(drinks);
+  const doze = 12;
   return (
     <div>
       <div className="header-container">
         <Header pageName="Drinks" />
       </div>
+      <BarraBuscaDrink />
       <CategoryBtn data={ categories } func={ handleCategoryBtn } all={ handleAllBtn } />
-      {drinks.length > 0 ? drinks.map((drink, index) => (
-        <div
-          key={ index }
-          data-testid={ `${index}-recipe-card` }
-        >
-          <button
-            type="button"
-            name={ drink.idDrink }
-            onClick={ (e) => { handleRedirectDrinkCard(e.target.name); } }
+      {(drinks && drinks.length > 0) ? drinks.map((drink, index) => (
+        index < doze && (
+          <div
+            key={ index }
+            data-testid={ `${index}-recipe-card` }
           >
-            <img
-              className="recipe-card-image"
-              data-testid={ `${index}-card-img` }
-              src={ drink.strDrinkThumb }
-              alt={ `imagem de ${drink.strDrink}` }
-            />
-          </button>
+            <button
+              type="button"
+              name={ drink.idDrink }
+              onClick={ (e) => { handleRedirectDrinkCard(e.target.name); } }
+            >
+              <img
+                className="recipe-card-image"
+                data-testid={ `${index}-card-img` }
+                src={ drink.strDrinkThumb }
+                alt={ `imagem de ${drink.strDrink}` }
+              />
+            </button>
 
-          <p data-testid={ `${index}-card-name` }>{drink.strDrink}</p>
-        </div>
+            <p data-testid={ `${index}-card-name` }>{drink.strDrink}</p>
+          </div>)
       )) : ''}
       <BarraInferior />
     </div>

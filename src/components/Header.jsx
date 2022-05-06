@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import './Header.css';
+import { useDataFood } from '../context/Providers/FoodProvider';
 
 function Header({ pageName }) {
+  const { isClick, setIsClick } = useDataFood();
   const [isSearch, setIsSearch] = useState(true);
-  const [isClick, setIsClick] = useState(false);
   const history = useHistory();
 
   const redirectAction = () => {
@@ -25,20 +26,19 @@ function Header({ pageName }) {
   }, [pageName]);
 
   return (
-    <>
-      <div className="header-container">
-        <button
-          type="button"
-          onClick={ redirectAction }
-        >
-          <img
-            src={ profileIcon }
-            alt="profileIcon"
-            data-testid="profile-top-btn"
-          />
-        </button>
-        <h2 data-testid="page-title">{pageName}</h2>
-        {isSearch
+    <div className="header-container">
+      <button
+        type="button"
+        onClick={ redirectAction }
+      >
+        <img
+          src={ profileIcon }
+          alt="profileIcon"
+          data-testid="profile-top-btn"
+        />
+      </button>
+      <h2 data-testid="page-title">{pageName}</h2>
+      {isSearch
           && (
             <button
               type="button"
@@ -50,12 +50,7 @@ function Header({ pageName }) {
                 data-testid="search-top-btn"
               />
             </button>)}
-      </div>
-      {isClick && <input
-        type="text"
-        data-testid="search-input"
-      />}
-    </>
+    </div>
 
   );
 }

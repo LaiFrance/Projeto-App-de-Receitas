@@ -2,13 +2,14 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMyContext } from '../context/Providers/ExploreProvider';
 import BarraInferior from '../components/BarraInferior';
+import Header from '../components/Header';
 
 export default function ExploreDrinks() {
   const history = useHistory();
   const { randomDrinks } = useMyContext();
   return (
     <div>
-      <h2>ExploreDrinks</h2>
+      <Header pageName="Explore Drinks" />
       <button
         type="button"
         data-testid="explore-by-ingredient"

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import BarraInferior from '../components/BarraInferior';
 import RecipeCardFood from '../components/RecipeCardFood';
 import '../style/explorebyArea.css';
+import Header from '../components/Header';
 
 export default function ExploreFoodsNationalities() {
   const [areadeorigem, setareadeorigem] = useState('All');
@@ -33,43 +34,47 @@ export default function ExploreFoodsNationalities() {
 
   const doze = 12;
   return (
-    <div className="dropdownmenu">
-      <div className="explore-origin">
-        <select
-          className="explore-by-area-dropdown"
-          data-testid="explore-by-nationality-dropdown"
-          onChange={ (event) => setareadeorigem(event.target.value) }
-        >
-          <option
-            className="areafood"
-            value="All"
-            data-testid="All-option"
+    <>
+      <Header pageName="Explore Nationalities" />
+      <div className="dropdownmenu">
+        <div className="explore-origin">
+          <select
+            className="explore-by-area-dropdown"
+            data-testid="explore-by-nationality-dropdown"
+            onChange={ (event) => setareadeorigem(event.target.value) }
           >
-            All
-          </option>
-          {areaList.map((origin) => (
             <option
               className="areafood"
-              data-testid={ `${origin.strArea}-option` }
-              key={ origin.strArea }
-              value={ origin.strArea }
+              value="All"
+              data-testid="All-option"
             >
-              {origin.strArea}
+              All
             </option>
-          ))}
-        </select>
-        <section className="recipes-list">
-          {filtraArea.map((meal, index) => {
-            if (index < doze) {
-              return (
-                <RecipeCardFood key={ meal.idMeal } recipe={ meal } index={ index } />
-              );
-            }
-            return null;
-          })}
-        </section>
+            {areaList.map((origin) => (
+              <option
+                className="areafood"
+                data-testid={ `${origin.strArea}-option` }
+                key={ origin.strArea }
+                value={ origin.strArea }
+              >
+                {origin.strArea}
+              </option>
+            ))}
+          </select>
+          <section className="recipes-list">
+            {filtraArea.map((meal, index) => {
+              if (index < doze) {
+                return (
+                  <RecipeCardFood key={ meal.idMeal } recipe={ meal } index={ index } />
+                );
+              }
+              return null;
+            })}
+          </section>
+        </div>
+        <BarraInferior />
       </div>
-      <BarraInferior />
-    </div>
+    </>
+
   );
 }

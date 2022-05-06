@@ -1,12 +1,14 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import '../style/drinkDetails.css';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import BarraInferior from '../components/BarraInferior';
+import Header from '../components/Header';
+import Recommended from '../components/Recomended';
 
 export default function SingleCocktail() {
   const { id } = useParams();
-
   const [loading, setLoading] = React.useState(false);
 
   const [cocktail, setCocktail] = React.useState(null);
@@ -23,24 +25,24 @@ export default function SingleCocktail() {
 
         if (data.drinks) {
           const {
-            strDrink: name,
-            strDrinkThumb: image,
-            strCategory: category,
-            strGlass: glass,
-            strInstructions: instructions,
-            strAlcoholic: info,
-            strIngredient1,
-            strIngredient2,
-            strIngredient3,
-            strIngredient4,
+            strDrink: name, strDrinkThumb: image,
+            strCategory: category, strGlass: glass,
+            strInstructions: instructions, strAlcoholic: info,
+            strIngredient1, strIngredient2, strIngredient3, strIngredient4,
             strIngredient5,
+            strMeasure1, strMeasure2, strMeasure3,
+            strMeasure4, strMeasure5, strMeasure6, strMeasure7,
+            strMeasure8, strMeasure9, strMeasure10, strMeasure11, strMeasure12,
+            strMeasure13, strMeasure14,
           } = data.drinks[0];
           const ingredients = [
-            strIngredient1,
-            strIngredient2,
-            strIngredient3,
-            strIngredient4,
+            strIngredient1, strIngredient2, strIngredient3, strIngredient4,
             strIngredient5,
+          ];
+          const measure = [
+            strMeasure1, strMeasure2, strMeasure3, strMeasure4, strMeasure5,
+            strMeasure6, strMeasure7, strMeasure8, strMeasure9, strMeasure10,
+            strMeasure11, strMeasure12, strMeasure13, strMeasure14,
           ];
           const newCocktail = {
             name,
@@ -50,6 +52,7 @@ export default function SingleCocktail() {
             glass,
             instructions,
             ingredients,
+            measure,
           };
           setCocktail(newCocktail);
         } else {
@@ -71,60 +74,71 @@ export default function SingleCocktail() {
   const {
     name,
     image,
-    category,
+    // category,
     info,
     instructions,
     ingredients,
+    measure,
   } = cocktail;
   return (
     <section className="sectioncocktail-section">
-      <Link to="/drinks" className="btn btn-primary">
+      {/* <Link to="/drinks" className="btn btn-primary">
         back home
-      </Link>
-      <h2 data-testid="recipe-title" className="section-title">{name}</h2>
-      <button
-        data-testid="share-btn"
-        type="button"
-      >
-        <img src={ shareIcon } alt="shareIcon" />
+      </Link> */}
+      <div className="header-container">
+        <Header pageName="Explore Foods" />
+      </div>
 
-      </button>
-      <button
-        className="favorite-btn"
-        data-testid="favorite-btn"
-        type="button"
-        src={ whiteHeartIcon }
-      >
-        <img src={ whiteHeartIcon } alt="favorite" />
-      </button>
-      <div className="drink">
-        <img
-          data-testid="recipe-photo"
-          className="drink-image"
-          src={ image }
-          alt={ name }
-        />
-        <div className="drink-info">
-          <p>
-            {name}
-          </p>
+      <img
+        data-testid="recipe-photo"
+        className="drink-image"
+        src={ image }
+        alt={ name }
+      />
+      <div className="drink-info">
+        <h1 data-testid="recipe-title">
+          {name}
+        </h1>
+        <h2 data-testid="recipe-category">{info}</h2>
+        <button
+          data-testid="share-btn"
+          type="button"
+        >
+          <img src={ shareIcon } alt="shareIcon" />
+
+        </button>
+        <button
+          className="favorite-btn"
+          data-testid="favorite-btn"
+          type="button"
+          src={ whiteHeartIcon }
+        >
+          <img src={ whiteHeartIcon } alt="favorite" />
+          <img src={ blackHeartIcon } alt="favoritee" />
+        </button>
+
+        {/* <div className="drink">
           <p data-testid="recipe-category">
             {category}
           </p>
           <p>
             {info}
           </p>
-
-          <h2>ingredients :</h2>
-          <ul data-testid="0-ingredient-name-and-measure">
-            {ingredients.map((item, index) => (
-              item ? <li key={ index }>{item}</li> : null))}
+        </div> */}
+        <h2>ingredients :</h2>
+        <div data-testid="0-ingredient-name-and-measure">
+          <ul>
+            {ingredients.map((elem, index) => (
+              elem ? <li key={ index }>{elem}</li> : null))}
+            {measure.map((elem, index) => (
+              elem ? <li key={ index }>{elem}</li> : null))}
           </ul>
-          <h2> instructions:</h2>
-          <p data-testid="instructions">
-            {instructions}
-          </p>
+
         </div>
+        <h2> instructions:</h2>
+        <p data-testid="instructions">
+          {instructions}
+        </p>
         <button
           data-testid="start-recipe-btn"
           type="button"
@@ -134,6 +148,9 @@ export default function SingleCocktail() {
 
         </button>
       </div>
+      <Recommended />
+      <BarraInferior />
     </section>
+
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -10,7 +10,10 @@ import Recommended from '../components/Recomended';
 export default function SingleCocktail() {
   const { id } = useParams();
   const [loading, setLoading] = React.useState(false);
-
+  const history = useHistory();
+  const redirect = () => {
+    history.push(`${history.location.pathname}/in-progress`);
+  };
   const [cocktail, setCocktail] = React.useState(null);
 
   React.useEffect(() => {
@@ -125,13 +128,16 @@ export default function SingleCocktail() {
             {info}
           </p>
         </div> */}
-        <h2>ingredients :</h2>
+
         <div data-testid="0-ingredient-name-and-measure">
+          <h2>ingredients :</h2>
           <ul>
             {ingredients.map((elem, index) => (
               elem ? <li key={ index }>{elem}</li> : null))}
-            {measure.map((elem, index) => (
-              elem ? <li key={ index }>{elem}</li> : null))}
+            <ul>
+              {measure.map((elem, index) => (
+                elem ? <li key={ index }>{elem}</li> : null))}
+            </ul>
           </ul>
 
         </div>
@@ -143,8 +149,9 @@ export default function SingleCocktail() {
           data-testid="start-recipe-btn"
           type="button"
           className="start-recipe-btn"
+          onClick={ redirect }
         >
-          Iniciar Receita
+          Continue Recipe
 
         </button>
       </div>

@@ -9,7 +9,6 @@ function RecipeCardFood({ recipe, index }) {
       data-testid={ `${index}-recipe-card` }
       to={ `/foods/${recipe.idMeal}` }
     >
-      <h3 className="card-name" data-testid={ `${index}-card-name` }>{recipe.strMeal}</h3>
       <img
         className="card-img"
         data-testid={ `${index}-card-img` }

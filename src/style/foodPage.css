@@ -1,4 +1,4 @@
-button {
+/* button {
   background-color: red;
   border: 1px solid var(--blue);
   border-radius: 20px;
@@ -9,7 +9,7 @@ button {
   padding: 0.9rem 4rem;
   text-transform: uppercase;
 
-}
+} */
 
 .recipe-card-image {
   border-radius: 20px;
@@ -18,12 +18,6 @@ button {
 
 }
 
-p {
-  font-size: 30px;
-  margin-bottom: 2rem;
-  margin-left: 90px;
-  margin-top: 20px;
-}
 
 footer {
   background-color: #bd3e31;

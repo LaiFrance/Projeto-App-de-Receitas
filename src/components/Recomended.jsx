@@ -19,7 +19,7 @@ export default function Recommended() {
     fetchData();
   }, [meals]);
 
-  const seis = 5;
+  const seis = 6;
   return (
 
     <section data-testid="0-recomendation-card" className="recipes-list">

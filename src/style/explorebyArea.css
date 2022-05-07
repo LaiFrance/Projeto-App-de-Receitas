@@ -62,15 +62,6 @@ select:hover:after {
 }
 
 
-.recipes-list {
-  column-count: 4;
-  column-gap: 34px;
-  column-rule: 2px hidden black;
-  margin-bottom: 50px;
-  margin-left: 20px;
-  margin-top: 30px;
-}
-
 .card-img {
   box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px , rgba(0, 0, 0, 0.3) 0 7px 13px -3px;
   width: 250px;

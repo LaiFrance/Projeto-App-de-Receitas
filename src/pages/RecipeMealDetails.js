@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -10,7 +10,10 @@ import Recommended from '../components/Recomended';
 
 export default function RecipeMealDetails() {
   const { id } = useParams();
-
+  const history = useHistory();
+  const redirect = () => {
+    history.push(`${history.location.pathname}/in-progress`);
+  };
   const [loading, setLoading] = React.useState(false);
 
   const [meals, setmeals] = React.useState(null);
@@ -119,17 +122,17 @@ export default function RecipeMealDetails() {
         </button>
         <h3 data-testid="recipe-category">{category}</h3>
       </div>
-      <div className="Meal-ingredients">
+      <div data-testid="0-ingredient-name-and-measure">
         <h2>ingredients :</h2>
-        <div data-testid="0-ingredient-name-and-measure">
+        <ul>
+          {ingredients.map((elem, index) => (
+            elem ? <li key={ index }>{elem}</li> : null))}
           <ul>
-            {ingredients.map((elem, index) => (
-              elem ? <li key={ index }>{elem}</li> : null))}
             {measure.map((elem, index) => (
               elem ? <li key={ index }>{elem}</li> : null))}
           </ul>
+        </ul>
 
-        </div>
       </div>
       <h2>instructions:</h2>
       <p data-testid="instructions">
@@ -150,8 +153,9 @@ export default function RecipeMealDetails() {
         data-testid="start-recipe-btn"
         type="button"
         className="start-recipe-btn"
+        onClick={ redirect }
       >
-        Iniciar Receita
+        Continue Recipe
       </button>
       <Recommended />
       <BarraInferior />

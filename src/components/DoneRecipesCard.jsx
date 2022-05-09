@@ -20,6 +20,7 @@ export default function DoneRecipesCard({ recipe, index,
     navigator.clipboard.writeText(URL);
     setCopied(!copied);
   };
+
   return (
     <div>
       {recipe && recipe.type === 'food' ? (
@@ -214,5 +215,13 @@ DoneRecipesCard.propTypes = {
   index: PropTypes.number.isRequired,
   addToFavorites: PropTypes.func,
   removeFromFavorites: PropTypes.func,
-  favorites: PropTypes.arrayOf(PropTypes.object),
+  favorites: PropTypes.arrayOf(PropTypes.shape({
+    alcoholicOrNot: PropTypes.string,
+    category: PropTypes.string,
+    id: PropTypes.string,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    nationality: PropTypes.string,
+    type: PropTypes.string,
+  })),
 };

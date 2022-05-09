@@ -13,7 +13,6 @@ export default function Drinks() {
   const [prevCategory, setPrevCategory] = useState('');
 
   const { splicedDrinks, categories } = useContext(DrinkContext);
-
   useEffect(() => {
     setDrinks(splicedDrinks);
   }, [splicedDrinks]);
@@ -52,7 +51,6 @@ export default function Drinks() {
       setDrinks(drinksbyCategory);
     }
   };
-
   const doze = 12;
   return (
     <div>

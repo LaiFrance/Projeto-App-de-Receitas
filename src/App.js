@@ -19,6 +19,8 @@ import RecipeMealDetails from './pages/RecipeMealDetails';
 import FavoritesRecipes from './pages/FavoritesRecipes';
 import DoneRecipes from './pages/DoneRecipes';
 import NotFound from './pages/Notfound';
+import FoodsInProgress from './pages/FoodsInProgress';
+import DrinksInProgress from './pages/DrinksInProgress';
 
 function App() {
   return (
@@ -61,6 +63,8 @@ function App() {
             <Route path="/favorite-recipes" exact component={ FavoritesRecipes } />
             <Route path="/done-recipes" exact component={ DoneRecipes } />
             <Route path="/explore/drinks/nationalities" exact component={ NotFound } />
+            <Route path="/foods/:id/in-progress" exact component={ FoodsInProgress } />
+            <Route path="/drinks/:id/in-progress" exact component={ DrinksInProgress } />
           </DrinksProvider>
         </FoodProvider>
       </Switch>

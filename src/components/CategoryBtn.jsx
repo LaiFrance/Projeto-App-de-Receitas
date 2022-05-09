@@ -29,7 +29,7 @@ export default function CategoryBtn({ data, func: handleCategoryBtn, all }) {
 }
 
 CategoryBtn.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({ strCategory: PropTypes.string })).isRequired,
   func: PropTypes.func.isRequired,
   all: PropTypes.func.isRequired,
 };

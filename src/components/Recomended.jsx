@@ -29,7 +29,6 @@ export default function Recommended() {
           if (index <= seis) {
             return (
               <RecipeCardFood key={ meal.idMeal } recipe={ meal } index={ index } />
-
             );
           }
           return null;

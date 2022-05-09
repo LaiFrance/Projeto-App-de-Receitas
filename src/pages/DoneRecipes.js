@@ -35,6 +35,17 @@ export default function DoneRecipes() {
     setOriginalRecipes(doneRecipes);
   }, []);
 
+  // const addToFavorites = (rcp) => {
+  //   setFavorites((prev) => [...prev, rcp]);
+  //   localStorage.setItem('favoriteRecipes', JSON.stringify([...favorites, rcp]));
+  // };
+
+  // const removeFromFavorites = (rcp) => {
+  //   const removeFav = favorites.filter((receita) => receita.id !== rcp.id);
+  //   setFavorites(removeFav);
+  //   localStorage.setItem('favoriteRecipes', JSON.stringify(removeFav));
+  // };
+
   const handleAllBtn = () => {
     setOriginalRecipes(doneRecipes);
   };
@@ -80,7 +91,11 @@ export default function DoneRecipes() {
 
       <div className="recipes-container">
         {originalRecipes ? originalRecipes.map((recipe, index) => (
-          <DoneRecipesCard key={ index } recipe={ recipe } index={ index } />
+          <DoneRecipesCard
+            key={ index }
+            recipe={ recipe }
+            index={ index }
+          />
         )) : ''}
       </div>
     </div>

@@ -51,3 +51,19 @@ export async function searchDrinkByCategory(category) {
   const drinks = response.drinks.slice(0, doze);
   return drinks;
 }
+
+export const listAllIngredients = async () => {
+  const response = await fetch(
+    'https://www.themealdb.com/api/json/v1/1/list.php?i=list',
+  );
+  const data = await response.json();
+  return data.meals;
+};
+
+export const listAllIngredientsDrinks = async () => {
+  const response = await fetch(
+    'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list',
+  );
+  const data = await response.json();
+  return data.drinks;
+};

@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
-import BarraInferior from '../components/BarraInferior';
 import Header from '../components/Header';
 import Recommended from '../components/Recomended';
 
 export default function SingleCocktail() {
   const { id } = useParams();
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const redirect = () => {
     history.push(`${history.location.pathname}/in-progress`);
   };
-  const [cocktail, setCocktail] = React.useState(null);
+  const [cocktail, setCocktail] = useState(null);
+  const [doneRecipes, setDoneRecipes] = useState([]);
 
-  React.useEffect(() => {
+  const unite = (arr1, arr2) => {
+    // r= resultado, e= elemento, i= índice
+    const l3 = arr1.reduce((r, e, i) => {
+      r.push(`${e} - ${arr2[i]}`);
+      return r;
+    }, []);
+    return l3;
+  };
+
+  useEffect(() => {
     setLoading(true);
     async function getCocktail() {
       try {
@@ -24,7 +33,6 @@ export default function SingleCocktail() {
           `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`,
         );
         const data = await response.json();
-        // console.log(data);
 
         if (data.drinks) {
           const {
@@ -47,6 +55,7 @@ export default function SingleCocktail() {
             strMeasure6, strMeasure7, strMeasure8, strMeasure9, strMeasure10,
             strMeasure11, strMeasure12, strMeasure13, strMeasure14,
           ];
+          const ingredientsReduced = unite(ingredients, measure);
           const newCocktail = {
             name,
             image,
@@ -54,8 +63,7 @@ export default function SingleCocktail() {
             category,
             glass,
             instructions,
-            ingredients,
-            measure,
+            ingredientsReduced,
           };
           setCocktail(newCocktail);
         } else {
@@ -68,6 +76,12 @@ export default function SingleCocktail() {
     }
     getCocktail();
   }, [id]);
+
+  useEffect(() => {
+    const receitasFeitas = JSON.parse(localStorage.getItem('doneRecipes'));
+    setDoneRecipes(receitasFeitas);
+  }, []);
+
   if (loading) {
     return <h2 className="section-title">Loading...</h2>;
   }
@@ -80,14 +94,10 @@ export default function SingleCocktail() {
     // category,
     info,
     instructions,
-    ingredients,
-    measure,
   } = cocktail;
   return (
     <section className="sectioncocktail-section">
-      {/* <Link to="/drinks" className="btn btn-primary">
-        back home
-      </Link> */}
+
       <div className="header-container">
         <Header pageName="Explore Foods" />
       </div>
@@ -120,24 +130,18 @@ export default function SingleCocktail() {
           <img src={ blackHeartIcon } alt="favoritee" />
         </button>
 
-        {/* <div className="drink">
-          <p data-testid="recipe-category">
-            {category}
-          </p>
-          <p>
-            {info}
-          </p>
-        </div> */}
-
         <div data-testid="0-ingredient-name-and-measure">
           <h2>ingredients :</h2>
           <ul>
-            {ingredients.map((elem, index) => (
-              elem ? <li key={ index }>{elem}</li> : null))}
-            <ul>
-              {measure.map((elem, index) => (
-                elem ? <li key={ index }>{elem}</li> : null))}
-            </ul>
+            {cocktail && cocktail.ingredientsReduced.map((elem, index) => (
+              elem !== ' -  ' && (
+                <li key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
+                  <label htmlFor={ elem }>
+                    { elem }
+                    <input type="checkbox" name={ elem } />
+                  </label>
+                </li>
+              )))}
           </ul>
 
         </div>
@@ -145,18 +149,18 @@ export default function SingleCocktail() {
         <p data-testid="instructions">
           {instructions}
         </p>
-        <button
-          data-testid="start-recipe-btn"
-          type="button"
-          className="start-recipe-btn"
-          onClick={ redirect }
-        >
-          Continue Recipe
-
-        </button>
+        {doneRecipes?.some((rcp) => rcp === algo) ? '' : (
+          <button
+            data-testid="start-recipe-btn"
+            type="button"
+            className="start-recipe-btn"
+            onClick={ redirect }
+          >
+            Start Recipe
+          </button>
+        )}
       </div>
       <Recommended />
-      <BarraInferior />
     </section>
 
   );

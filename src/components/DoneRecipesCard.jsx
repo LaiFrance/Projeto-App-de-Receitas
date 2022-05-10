@@ -20,6 +20,7 @@ export default function DoneRecipesCard({ recipe, index,
     navigator.clipboard.writeText(URL);
     setCopied(!copied);
   };
+
   return (
     <div>
       {recipe && recipe.type === 'food' ? (
@@ -68,30 +69,30 @@ export default function DoneRecipesCard({ recipe, index,
                     alt="share"
                   />
                 </button>
-                {favorites?.find((fav) => fav.id === recipe.id) ? (
-                  <button
-                    type="button"
-                    onClick={ () => removeFromFavorites(recipe) }
-                  >
-                    <img
-                      src={ blackHeartIcon }
-                      data-testid={ `${index}-horizontal-favorite-btn` }
-                      alt="favorited"
-                    />
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={ () => addToFavorites(recipe) }
-                  >
-                    <img
-                      src={ whiteHeartIcon }
-                      data-testid={ `${index}-horizontal-favorite-btn` }
-                      alt="not favorite yet"
-                    />
-                  </button>
-                )}
               </div>
+            )}
+            {favorites?.find((fav) => fav.id === recipe.id) ? (
+              <button
+                type="button"
+                onClick={ () => removeFromFavorites(recipe) }
+              >
+                <img
+                  src={ blackHeartIcon }
+                  data-testid={ `${index}-horizontal-favorite-btn` }
+                  alt="favorited"
+                />
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={ () => addToFavorites(recipe) }
+              >
+                <img
+                  src={ whiteHeartIcon }
+                  data-testid={ `${index}-horizontal-favorite-btn` }
+                  alt="not favorite yet"
+                />
+              </button>
             )}
             {recipe.tags?.length > 0 && recipe.tags.slice(0, 2).map((tag) => (
               <span
@@ -127,54 +128,56 @@ export default function DoneRecipesCard({ recipe, index,
             >
               {recipe.doneDate}
             </span>
-            {copied ? (
-              <button
-                className="shareBtn"
-                type="button"
-                onClick={ () => shareDrinks(recipe.id) }
-              >
-                Link copied!
-
-              </button>
-            ) : (
-              <div>
+            <div>
+              {copied ? (
                 <button
                   className="shareBtn"
                   type="button"
                   onClick={ () => shareDrinks(recipe.id) }
                 >
+                  Link copied!
+
+                </button>
+              ) : (
+                <div>
+                  <button
+                    className="shareBtn"
+                    type="button"
+                    onClick={ () => shareDrinks(recipe.id) }
+                  >
+                    <img
+                      data-testid={ `${index}-horizontal-share-btn` }
+                      src={ shareIcon }
+                      alt="share"
+                    />
+                  </button>
+                </div>
+              )}
+              {favorites?.find((fav) => fav.id === recipe.id) ? (
+                <button
+                  type="button"
+                  onClick={ () => removeFromFavorites(recipe) }
+                >
                   <img
-                    data-testid={ `${index}-horizontal-share-btn` }
-                    src={ shareIcon }
-                    alt="share"
+                    src={ blackHeartIcon }
+                    data-testid={ `${index}-horizontal-favorite-btn` }
+                    alt="favorited"
                   />
                 </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={ () => addToFavorites(recipe) }
+                >
+                  <img
+                    src={ whiteHeartIcon }
+                    data-testid={ `${index}-horizontal-favorite-btn` }
+                    alt="not favorite yet"
+                  />
+                </button>
+              )}
 
-                {favorites?.find((fav) => fav.id === recipe.id) ? (
-                  <button
-                    type="button"
-                    onClick={ () => removeFromFavorites(recipe) }
-                  >
-                    <img
-                      src={ blackHeartIcon }
-                      data-testid={ `${index}-horizontal-favorite-btn` }
-                      alt="favorited"
-                    />
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={ () => addToFavorites(recipe) }
-                  >
-                    <img
-                      src={ whiteHeartIcon }
-                      data-testid={ `${index}-horizontal-favorite-btn` }
-                      alt="not favorite yet"
-                    />
-                  </button>
-                )}
-              </div>
-            )}
+            </div>
             {recipe.tags?.length > 0 && recipe.tags.map((drinktag) => (
               <span
                 key={ drinktag }
@@ -191,6 +194,12 @@ export default function DoneRecipesCard({ recipe, index,
   );
 }
 
+DoneRecipesCard.defaultProps = {
+  addToFavorites: undefined,
+  removeFromFavorites: undefined,
+  favorites: undefined,
+};
+
 DoneRecipesCard.propTypes = {
   recipe: PropTypes.shape({
     type: PropTypes.string,
@@ -204,7 +213,15 @@ DoneRecipesCard.propTypes = {
     tags: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   index: PropTypes.number.isRequired,
-  addToFavorites: PropTypes.func.isRequired,
-  removeFromFavorites: PropTypes.func.isRequired,
-  favorites: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addToFavorites: PropTypes.func,
+  removeFromFavorites: PropTypes.func,
+  favorites: PropTypes.arrayOf(PropTypes.shape({
+    alcoholicOrNot: PropTypes.string,
+    category: PropTypes.string,
+    id: PropTypes.string,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    nationality: PropTypes.string,
+    type: PropTypes.string,
+  })),
 };

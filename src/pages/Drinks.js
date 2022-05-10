@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { DrinkContext } from '../context/Providers/DrinksProvider';
 import BarraInferior from '../components/BarraInferior';
 import CategoryBtn from '../components/CategoryBtn';
@@ -11,10 +11,8 @@ export default function Drinks() {
   const [toggleState, setToggleState] = useState(false);
   const [drinks, setDrinks] = useState([]);
   const [prevCategory, setPrevCategory] = useState('');
-  const history = useHistory();
 
   const { splicedDrinks, categories } = useContext(DrinkContext);
-
   useEffect(() => {
     setDrinks(splicedDrinks);
   }, [splicedDrinks]);
@@ -23,10 +21,6 @@ export default function Drinks() {
     setPrevCategory('');
     setDrinks(splicedDrinks);
     setToggleState(false);
-  };
-
-  const handleRedirectDrinkCard = (id) => {
-    history.push(`/drinks/${id}`);
   };
 
   const handleCategoryBtn = async (category) => {
@@ -57,8 +51,6 @@ export default function Drinks() {
       setDrinks(drinksbyCategory);
     }
   };
-
-  console.log(drinks);
   const doze = 12;
   return (
     <div>
@@ -69,25 +61,20 @@ export default function Drinks() {
       <CategoryBtn data={ categories } func={ handleCategoryBtn } all={ handleAllBtn } />
       {(drinks && drinks.length > 0) ? drinks.map((drink, index) => (
         index < doze && (
-          <div
+          <Link
             key={ index }
+            to={ `/drinks/${drink.idDrink}` }
             data-testid={ `${index}-recipe-card` }
           >
-            <button
-              type="button"
-              name={ drink.idDrink }
-              onClick={ (e) => { handleRedirectDrinkCard(e.target.name); } }
-            >
-              <img
-                className="recipe-card-image"
-                data-testid={ `${index}-card-img` }
-                src={ drink.strDrinkThumb }
-                alt={ `imagem de ${drink.strDrink}` }
-              />
-            </button>
-
+            <img
+              className="recipe-card-image"
+              data-testid={ `${index}-card-img` }
+              src={ drink.strDrinkThumb }
+              alt={ `imagem de ${drink.strDrink}` }
+            />
             <p data-testid={ `${index}-card-name` }>{drink.strDrink}</p>
-          </div>)
+          </Link>
+        )
       )) : ''}
       <BarraInferior />
     </div>

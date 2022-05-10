@@ -18,6 +18,18 @@
 
 }
 
+.start-recipe-btn {
+  align-items: center;
+  background: #94ff62;
+  bottom: 0;
+  display: flex;
+  font-size: 18px;
+  height: 50px;
+  justify-content: space-around;
+  left: 0;
+  position: fixed;
+  width: 100%;
+}
 
 footer {
   background-color: #bd3e31;

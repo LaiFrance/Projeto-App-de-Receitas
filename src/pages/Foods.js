@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FoodContext } from '../context/Providers/FoodProvider';
 import BarraInferior from '../components/BarraInferior';
 import CategoryBtn from '../components/CategoryBtn';
@@ -13,7 +13,6 @@ export default function Foods() {
   const [foods, setFoods] = useState([]);
   const [prevCategory, setPrevCategory] = useState('');
   const { splicedFoods, categories } = useContext(FoodContext);
-  const history = useHistory();
 
   useEffect(() => {
     setFoods(splicedFoods);
@@ -23,10 +22,6 @@ export default function Foods() {
     setPrevCategory('');
     setFoods(splicedFoods);
     setToggleState(false);
-  };
-
-  const handleRedirectCard = (id) => {
-    history.push(`/foods/${id}`);
   };
 
   const handleCategoryBtn = async (category) => {
@@ -74,24 +69,20 @@ export default function Foods() {
       />
       {(foods && foods.length > 0) ? foods.map((food, index) => (
         index < doze && (
-          <div
-            key={ index }
+          <Link
             data-testid={ `${index}-recipe-card` }
+            key={ index }
+            to={ `/foods/${food.idMeal}` }
           >
-            <button
-              type="button"
-              name={ food.idMeal }
-              onClick={ (e) => handleRedirectCard(e.target.name) }
-            >
-              <img
-                className="recipe-card-image"
-                data-testid={ `${index}-card-img` }
-                src={ food.strMealThumb }
-                alt={ `imagem de ${food.strMeal}` }
-              />
-            </button>
+            <img
+              className="recipe-card-image"
+              data-testid={ `${index}-card-img` }
+              src={ food.strMealThumb }
+              alt={ `imagem de ${food.strMeal}` }
+            />
             <p data-testid={ `${index}-card-name` }>{food.strMeal}</p>
-          </div>)
+          </Link>
+        )
       )) : ''}
       <BarraInferior />
     </div>

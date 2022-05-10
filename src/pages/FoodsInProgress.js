@@ -35,7 +35,7 @@ export default function FoodsInProgress() {
   const addToFavorites = () => {
     if (mealInProgress.length > 0 && allowBtn) {
       const obj = {
-        id,
+        id: [id],
         type: 'food',
         nationality: mealInProgress[0].strArea,
         category: mealInProgress[0].strCategory,
@@ -90,11 +90,11 @@ export default function FoodsInProgress() {
               </button>
             </div>
           )}
-          <button type="button" data-testid="favorite-btn" onClick={ addToFavorites }>
+          <button type="button" onClick={ addToFavorites }>
             {!favorited ? (
-              <img src={ whiteHeartIcon } alt="white heart" />
+              <img src={ whiteHeartIcon } data-testid="favorite-btn" alt="white heart" />
             ) : (
-              <img src={ blackHeartIcon } alt="black heart" />
+              <img src={ blackHeartIcon } data-testid="favorite-btn" alt="black heart" />
             )}
           </button>
           <span data-testid="recipe-category">{ rcp.strCategory }</span>

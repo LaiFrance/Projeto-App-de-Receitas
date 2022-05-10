@@ -9,19 +9,19 @@ import Recommended from '../components/Recomended';
 
 export default function RecipeMealDetails() {
   const { id } = useParams();
-  // const [ingredients, setIngredients] = useState([]);
   const history = useHistory();
-  const [loading, setLoading] = useState(false);
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [meals, setmeals] = useState(null);
-  const [rcpProgress, setRcpProgress] = useState([]);
+  const [original, setOriginal] = useState([]);
+  const [copied, setCopied] = useState(false);
+  const [favorited, setFavorited] = useState(false);
+  // const [rcpProgress, setRcpProgress] = useState([]);
 
   const redirect = () => {
     const getRcps = JSON.parse(localStorage.getItem('inProgressRecipes')) || {
       cocktails: {},
       meals: {},
     };
-
     localStorage.setItem('inProgressRecipes',
       JSON.stringify({ ...getRcps, meals: { ...getRcps.meals, [id]: [] } }));
 
@@ -36,23 +36,20 @@ export default function RecipeMealDetails() {
     }, []);
     return arr3;
   };
-
+  // useEffect(() => {
+  //   const getRcps = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  //   if (getRcps) {
+  //     setRcpProgress(getRcps.meals);
+  //   }
+  // }, []);
   useEffect(() => {
-    const getRcps = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (getRcps) {
-      setRcpProgress(getRcps.meals);
-    }
-  }, []);
-
-  useEffect(() => {
-    setLoading(true);
     async function getMeal() {
       try {
         const response = await fetch(
           `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
         );
         const data = await response.json();
-
+        setOriginal(data.meals[0]);
         // const ingredient = data.meals[0]['strIngredient1'];
         const {
           strMeal: name, strMealThumb: image, strCategory: category, strArea: area,
@@ -89,7 +86,6 @@ export default function RecipeMealDetails() {
       } catch (error) {
         console.log(error);
       }
-      setLoading(false);
     }
     getMeal();
   }, [id]);
@@ -97,11 +93,10 @@ export default function RecipeMealDetails() {
   useEffect(() => {
     const receitasFeitas = JSON.parse(localStorage.getItem('doneRecipes'));
     setDoneRecipes(receitasFeitas);
+    const getFavorites = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    const isFavorite = getFavorites.some((item) => item.id === id);
+    setFavorited(isFavorite);
   }, []);
-
-  if (loading) {
-    return <h2 className="section-title">Loading...</h2>;
-  }
   if (!meals) {
     return <Link to="/home" className="btn btn-primary">back home</Link>;
   }
@@ -112,6 +107,33 @@ export default function RecipeMealDetails() {
     instructions,
     youtube,
   } = meals;
+  const shareFoods = () => {
+    const URL = `http://localhost:3000/foods/${id}`;
+    navigator.clipboard.writeText(URL);
+    setCopied(!copied);
+  };
+  const removeFromFavorites = (rcpid) => {
+    const getFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const removeFav = getFavorites.filter((receita) => receita.id !== rcpid);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(removeFav));
+    setFavorited(!favorited);
+  };
+  const addToFavorites = () => {
+    if (original) {
+      const obj = {
+        id,
+        type: 'food',
+        nationality: original.strArea,
+        category: original.strCategory,
+        alcoholicOrNot: '',
+        name: original.strMeal,
+        image: original.strMealThumb,
+      };
+      const getFavorites = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+      localStorage.setItem('favoriteRecipes', JSON.stringify([...getFavorites, obj]));
+    }
+    setFavorited(!favorited);
+  };
 
   return (
     <section className="sectionmeals-section">
@@ -127,25 +149,47 @@ export default function RecipeMealDetails() {
 
       <div className="name-buttons">
         <h2 data-testid="recipe-title">{name}</h2>
-        <button
-          data-testid="share-btn"
-          type="button"
-        >
-          <img src={ shareIcon } alt="shareIcon" />
 
-        </button>
-        <button
-          className="favorite-btn"
-          data-testid="favorite-btn"
-          type="button"
-          src={ whiteHeartIcon }
-        >
-          <img id="favorite-white" src={ whiteHeartIcon } alt="favorite" />
-          <img id="favorite-black" src={ blackHeartIcon } alt="favoritee" />
+        {copied ? (
+          <button
+            className="shareBtn"
+            type="button"
+            onClick={ shareFoods }
+            data-testid="share-btn"
+          >
+            Link copied!
+          </button>
+        ) : (
+          <div>
+            <button
+              type="button"
+              className="shareBtn"
+              onClick={ shareFoods }
+            >
+              <img
+                data-testid="share-btn"
+                src={ shareIcon }
+                alt="share"
+              />
+            </button>
+          </div>
+        )}
 
-        </button>
+        {!favorited ? (
+          <button type="button" onClick={ addToFavorites }>
+            <img src={ whiteHeartIcon } data-testid="favorite-btn" alt="white heart" />
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={ () => removeFromFavorites(id) }
+          >
+            <img src={ blackHeartIcon } data-testid="favorite-btn" alt="black heart" />
+          </button>
+        )}
         <h3 data-testid="recipe-category">{category}</h3>
       </div>
+
       <div>
         <h2>ingredients :</h2>
         <ul>
@@ -176,6 +220,7 @@ export default function RecipeMealDetails() {
           title="recipeVideo"
         />
       </section>
+      <Recommended />
       {doneRecipes === null ? (
         <button
           data-testid="start-recipe-btn"
@@ -183,10 +228,10 @@ export default function RecipeMealDetails() {
           className="start-recipe-btn"
           onClick={ redirect }
         >
-          {rcpProgress[id] ? 'Start Recipe' : 'Continue Recipe'}
+          Start Recipe
+          {/* {rcpProgress[id] ? 'Start Recipe' : 'Continue Recipe'} */}
         </button>
       ) : ''}
-      <Recommended />
     </section>
   );
 }

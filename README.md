@@ -1,16 +1,17 @@
-### Termos de uso
+![login](https://user-images.githubusercontent.com/91226847/169660147-62b7819e-7e01-4a21-b0dd-a014b15fdea5.png)
+![pagedrinks](https://user-images.githubusercontent.com/91226847/169660145-ed3efd07-34e8-4b86-811a-412480b8d307.png)
+![pagedrinks2](https://user-images.githubusercontent.com/91226847/169660142-33972e00-4574-421f-a1a7-508c33d8d5ab.png)
+![React-App (6)](https://user-images.githubusercontent.com/91226847/169660143-43dcb7e4-6314-4f8e-8e21-91bde2b66dfe.png)
+![React-App (9)](https://user-images.githubusercontent.com/91226847/169660134-414d4d73-4aea-48cf-b628-ea18b48b9e5d.png)
+![React-App (8)](https://user-images.githubusercontent.com/91226847/169660135-e647d1cf-777d-49fc-87b5-c267b776bc76.png)
+![React-App (7)](https://user-images.githubusercontent.com/91226847/169660136-6fda3530-a557-40e5-995b-897517eb2331.png)
+![food page](https://user-images.githubusercontent.com/91226847/169660146-ba74585e-b5a3-4298-aa88-7936165e3ac5.png)
+![foodpage3](https://user-images.githubusercontent.com/91226847/169660138-45f7b336-af9e-4742-8074-584acb595568.png)
+![foodpage2](https://user-images.githubusercontent.com/91226847/169660140-416e9726-aea0-475d-8f69-0fc16f3122f5.png)
 
-Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe.
 
----
 
-# Boas vindas ao repositório do projeto de Receitas!
 
-Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀
-
-Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir desse repositório, utilizando uma branch específica e um _Pull Request_ para colocar seus códigos.
-
----
 
 # Sumário
 

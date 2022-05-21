@@ -1,9 +1,46 @@
 .header-container {
-  align-items: center;
-  background: #ffab62;
-  display: flex;
-  justify-content: space-around;
-  position: relative;
-  width: 100%;
+  background-image: url('../images/topo.jpeg');
+  background-position: 50% 50%;
+  background-size: cover;
 }
 
+button {
+  background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+  background-color: #ededed;
+  border: 1px solid #d6bcd6;
+  border-radius: 15px;
+  box-shadow: 3px 4px 0 0 #899599;
+  color: #3a8a9e;
+  display: inline-block;
+  font-size: 11px;
+  height: 40px;
+  margin: 3px;
+  padding: 7px 25px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #283966;
+  width: 30%;
+}
+
+.searchInput {
+  padding: 10px;
+}
+
+label {
+  background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+  background-color: #79bbff;
+  border: 1px solid #337bc4;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 17px;
+  margin: 10px;
+  margin-bottom: 0.5rem;
+  padding: 5px 9px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #528ecc;
+}
+
+input {
+  border-radius: 20px;
+}

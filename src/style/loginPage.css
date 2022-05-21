@@ -8,48 +8,48 @@
   width: 100%;
 }
 
-.parallaxonde > use {
-  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5)     infinite;
+.login-page {
+  margin: auto;
+  padding: 8% 0 0;
+  width: 360px;
 }
 
-.parallaxonde > use:nth-child( 1 ) {
-  animation-delay: -2s;
-  animation-duration: 7s;
+.form {
+  background: white;
+  box-shadow: 0 0 20px 0 rgb(0 0 0 / 20%) , 0 5px 5px 0 rgb(0 0 0 / 24%);
+  height: 500px;
+  margin: 0 auto 100px;
+  margin-top: 20%;
+  max-width: 360px;
+  padding: 45px;
+  position: relative;
+  text-align: center;
 }
 
-.parallaxonde > use:nth-child( 2 ) {
-  animation-delay: -3s;
-  animation-duration: 10s;
+.form input {
+  background: #f2f2f2;
+  border: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: 14px;
+  margin: 0 0 15px;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
 }
 
-.parallaxonde > use:nth-child( 3 ) {
-  animation-delay: -4s;
-  animation-duration: 13s;
-}
-
-.parallaxonde > use:nth-child( 4 ) {
-  animation-delay: -5s;
-  animation-duration: 20s;
-}
-
-@keyframes move-forever {
-
-  0% {
-    transform: translate3d(-90px, 0, 0);
-  }
-
-  100% {
-    transform: translate3d(85px, 0, 0);
-  }
-}
-
-
-@media ( max-width : 800px ) {
-
-  .onda {
-    height: 50px;
-    min-height: 50px;
-  }
+.form button {
+  background: #379ce0;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 14px;
+  outline: 0;
+  padding: 15px;
+  text-transform: uppercase;
+  transition: all 0.3 ease;
+  width: 100%;
 }
 
 
@@ -72,34 +72,8 @@ a, a:active, a:hover, a:visited {
   text-decoration: none;
 }
 
-input {
-  background: rgb(255 252 252 / 30%);
-  border: none;
-  border-radius: 4px;
-  box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2);
-  font-size: 13px;
-  margin-bottom: 10px;
-  outline: none;
-  padding: 10px;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  transition: box-shadow 0.5s ease;
-  width: 100%;
-}
 
 input:focus {
   box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4);
-}
-
-
-.form input {
-  background: #f2f2f2;
-  border: 0;
-  box-sizing: border-box;
-  font-family: serif , sans-serif;
-  font-size: 14px;
-  margin: 0 0 15px;
-  outline: 0;
-  padding: 15px;
-  width: 100%;
 }
 

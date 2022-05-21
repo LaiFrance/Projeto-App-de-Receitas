@@ -21,27 +21,31 @@ const ExploreDrinksIngredients = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <Header pageName="Explore Ingredients" />
-      {allIngredients.map(({ strIngredient1 }, index) => (
-        <Link
-          key={ strIngredient1 }
-          data-testid={ `${index}-ingredient-card` }
-          to={ `/drinks?ingredient=${strIngredient1}` }
-        >
-          <img
-          // https://www.themealdb.com/images/ingredients/{nome-do-ingrediente}-Small.png
-          // // exemplo com "Lime"
-          // https://www.themealdb.com/images/ingredients/Lime-Small.png
-            data-testid={ `${index}-card-img` }
-            src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
-            alt={ strIngredient1 }
-          />
-          <div data-testid={ `${index}-card-name` }>{strIngredient1}</div>
-        </Link>
-      ))}
-      <BarraInferior />
-    </div>
+      <div className="explore-ingredients ">
+
+        {allIngredients.map(({ strIngredient1 }, index) => (
+          <Link
+            key={ strIngredient1 }
+            data-testid={ `${index}-ingredient-card` }
+            to={ `/drinks?ingredient=${strIngredient1}` }
+          >
+            <img
+            // https://www.themealdb.com/images/ingredients/{nome-do-ingrediente}-Small.png
+            // // exemplo com "Lime"
+            // https://www.themealdb.com/images/ingredients/Lime-Small.png
+              data-testid={ `${index}-card-img` }
+              src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
+              alt={ strIngredient1 }
+            />
+            <div data-testid={ `${index}-card-name` }>{strIngredient1}</div>
+          </Link>
+        ))}
+        <BarraInferior />
+      </div>
+
+    </>
   );
 };
 export default ExploreDrinksIngredients;

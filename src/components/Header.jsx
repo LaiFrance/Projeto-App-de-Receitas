@@ -41,6 +41,7 @@ function Header({ pageName }) {
       {isSearch
           && (
             <button
+              className="search-header"
               type="button"
               onClick={ () => setIsClick(!isClick) }
             >

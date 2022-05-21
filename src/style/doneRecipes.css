@@ -1,12 +1,3 @@
-* {
-  font-size: 10px;
-}
-
-img {
-  max-height: 50px;
-  max-width: 50px;
-}
-
 /* button {
   align-items: center;
   display: flex;
@@ -14,23 +5,30 @@ img {
   max-width: 100px;
 } */
 
+h2 {
+  background-color: #408e91;
+  font-size: 2rem;
+}
+
+.profile-logout {
+  background-color: red;
+}
+
 .recipe-card {
   align-items: center;
-  border: 1px solid black;
   display: flex;
   gap: 5px;
   max-height: 200px;
   max-width: 250px;
 }
 
-.shareBtn img {
-  max-height: 15px;
-  max-width: 50px;
+.shareBtn {
+  font-size: 10px;
 }
 
-.shareBtn {
-  max-height: 30px;
-  max-width: 50px;
+.details-containers {
+  margin-bottom: 50px;
+  margin-top: 50px;
 }
 
 .recipes-container {

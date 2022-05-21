@@ -59,6 +59,7 @@ export default function DrinksInProgress() {
       {drinkInProgress.length > 0 ? drinkInProgress.map((rcp, index) => (
         <div key={ index }>
           <img
+            className="recipe-photo"
             src={ rcp.strDrinkThumb }
             data-testid="recipe-photo"
             alt={ `imagem de ${rcp.strDrink}` }
@@ -107,7 +108,7 @@ export default function DrinksInProgress() {
                 </li>)
             )) : ''}
           </ul>
-          <span data-testid="instructions">{ rcp.strInstructions }</span>
+          <span className="leia" data-testid="instructions">{ rcp.strInstructions }</span>
           <button type="button" data-testid="finish-recipe-btn">Finish recipe</button>
         </div>
 

@@ -1,8 +1,7 @@
 .explore-by-area-dropdown {
   margin-block-end: 50px;
-  margin-left: 20px;
-  margin-top: 80px;
-
+  margin-left: 25px;
+  margin-top: 50px;
 }
 
 select {
@@ -11,11 +10,25 @@ select {
   display: flex;
   height: 3em;
   overflow: hidden;
+  padding: 5px;
   position: relative;
   transition: 0.25s all ease;
-  width: 20em;
+  width: 18em;
+
 }
 
+.explore-ingredients {
+  align-items: center;
+  column-count: 2;
+  justify-content: center;
+  text-align: center;
+}
+
+h2 {
+  background-color: #408e91;
+  font-size: 2rem;
+  text-align: center;
+}
 
 select:hover:after {
   color: #beb5a5;
@@ -63,12 +76,15 @@ select:hover:after {
 
 
 .card-img {
-  box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px , rgba(0, 0, 0, 0.3) 0 7px 13px -3px;
+  box-shadow: rgb(0 0 0 / 40%) 0 2px 4px , rgb(0 0 0 / 30%) 0 7px 13px -3px;
+  margin-bottom: 50px;
+  margin-left: 20%;
+  margin-top: 50%;
   width: 250px;
 }
 
 
-/* .card-img:nth-child( 1 ) {
+.card-img:nth-child( 1 ) {
   align-self: auto;
   display: block;
   flex-basis: auto;
@@ -146,4 +162,4 @@ select:hover:after {
   flex-basis: auto;
   flex-grow: 0;
   order: 0;
-} */
+}

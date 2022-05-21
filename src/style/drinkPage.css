@@ -11,6 +11,20 @@ button {
 
 }
 
+.header-container-drinks {
+  background-image: url('../images/topodrink.png');
+  background-repeat: no-repeat;
+}
+
+.leia {
+  background-color: #187e7075;
+  border-radius: 10px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  width: 90%;
+}
+
 .recipe-card-image {
   border-radius: 20px;
   box-shadow: rgba(50, 50, 93, 0.25) 0 50px 100px -20px;

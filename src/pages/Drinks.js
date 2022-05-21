@@ -54,7 +54,7 @@ export default function Drinks() {
   const doze = 12;
   return (
     <div>
-      <div className="header-container">
+      <div className="header-container-drinks">
         <Header pageName="Drinks" />
       </div>
       <BarraBuscaDrink />

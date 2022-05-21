@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function CategoryBtn({ data, func: handleCategoryBtn, all }) {
   return (
-    <div>
+    <div className="buttonsbar">
       <button
         data-testid="All-category-filter"
         onClick={ all }

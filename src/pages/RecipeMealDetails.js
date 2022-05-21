@@ -137,11 +137,12 @@ export default function RecipeMealDetails() {
 
   return (
     <section className="sectionmeals-section">
-      <div className="header-container">
+      <div className="header-container-drinks">
         <Header pageName="Explore Foods" />
       </div>
 
       <img
+        className="recipe-photo"
         data-testid="recipe-photo"
         src={ image }
         alt={ name }
@@ -206,7 +207,7 @@ export default function RecipeMealDetails() {
 
       </div>
       <h2>instructions:</h2>
-      <p data-testid="instructions">
+      <p className="leia" data-testid="instructions">
         {instructions}
       </p>
       <section

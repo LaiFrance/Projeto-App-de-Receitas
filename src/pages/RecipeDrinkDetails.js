@@ -129,13 +129,13 @@ export default function SingleCocktail() {
   return (
     <section className="sectioncocktail-section">
 
-      <div className="header-container">
+      <div className="header-container-drinks">
         <Header pageName="Explore Drinks" />
       </div>
 
       <img
         data-testid="recipe-photo"
-        className="drink-image"
+        className="recipe-photo"
         src={ image }
         alt={ name }
       />
@@ -198,7 +198,7 @@ export default function SingleCocktail() {
 
       </div>
       <h2> instructions:</h2>
-      <p data-testid="instructions">
+      <p className="leia" data-testid="instructions">
         {instructions}
       </p>
       <Recommended />

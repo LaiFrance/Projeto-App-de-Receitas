@@ -61,6 +61,7 @@ export default function FoodsInProgress() {
       {mealInProgress.length > 0 ? mealInProgress.map((rcp, index) => (
         <div key={ index }>
           <img
+            className="recipe-photo"
             src={ rcp.strMealThumb }
             data-testid="recipe-photo"
             alt={ `imagem de ${rcp.strMeal}` }
@@ -109,7 +110,7 @@ export default function FoodsInProgress() {
                 </li>)
             )) : ''}
           </ul>
-          <span data-testid="instructions">{ rcp.strInstructions }</span>
+          <span className="leia" data-testid="instructions">{ rcp.strInstructions }</span>
           <button type="button" data-testid="finish-recipe-btn">Finish recipe</button>
         </div>
       )) : 'No meal in progress'}

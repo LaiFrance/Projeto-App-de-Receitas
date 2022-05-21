@@ -60,14 +60,15 @@ export default function Profile() {
         >
           Favorite Recipes
         </button>
-        <button
-          type="button"
-          data-testid="profile-logout-btn"
-          onClick={ logOff }
-        >
-          Logout
-        </button>
       </form>
+      <button
+        className="profile-logout"
+        type="button"
+        data-testid="profile-logout-btn"
+        onClick={ logOff }
+      >
+        Logout
+      </button>
       <BarraInferior />
     </div>
   );

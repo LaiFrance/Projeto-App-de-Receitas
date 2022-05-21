@@ -21,10 +21,9 @@ export default function Recommended() {
 
   const seis = 6;
   return (
-
-    <section data-testid="0-recomendation-card" className="recipes-list">
-      <h1 data-testid="0-recomendation-title">
-        Recomendation:
+    <section data-testid="0-recomendation-card" className="container">
+      <h2>Recomendations</h2>
+      <div className="carousel" data-testid="0-recomendation-title">
         {recomendamos.map((meal, index) => {
           if (index <= seis) {
             return (
@@ -33,7 +32,7 @@ export default function Recommended() {
           }
           return null;
         })}
-      </h1>
+      </div>
     </section>
   );
 }

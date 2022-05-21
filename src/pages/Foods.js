@@ -56,9 +56,8 @@ export default function Foods() {
   const doze = 12;
   return (
     <div className="container-foods">
-      <div className="header-container">
-        <Header pageName="Foods" />
-      </div>
+      <div className="header-container" />
+      <Header pageName="Foods" />
       <div>
         <BarraBuscaFood />
       </div>

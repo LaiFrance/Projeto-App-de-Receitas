@@ -40,13 +40,7 @@ export default function BarraBusca() {
 
   return (
     <div>
-      <div className="searchInput">
-        {isClick && <input
-          type="text"
-          data-testid="search-input"
-          onChange={ ({ target }) => setInputText(target.value) }
-        />}
-      </div>
+
       <label htmlFor="busca">
         <input
           type="radio"
@@ -77,15 +71,23 @@ export default function BarraBusca() {
         />
         First letter
       </label>
-      <button
-        type="button"
-        data-testid="exec-search-btn"
-        onClick={ () => {
-          getRadioApi();
-        } }
-      >
-        Search
-      </button>
+      {' '}
+      <div className="searchInput">
+        {isClick && <input
+          type="text"
+          data-testid="search-input"
+          onChange={ ({ target }) => setInputText(target.value) }
+        />}
+        <button
+          type="button"
+          data-testid="exec-search-btn"
+          onClick={ () => {
+            getRadioApi();
+          } }
+        >
+          Search
+        </button>
+      </div>
     </div>
   );
 }

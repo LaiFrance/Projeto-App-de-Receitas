@@ -1,3 +1,8 @@
+# APLICAÇÃO IDEAL PARA DISPOSITIVOS MÓVEIS 
+
+### LINK DA APLICAÇÃO : https://projeto-app-de-receitas-theta.vercel.app/
+
+
 ![login](https://user-images.githubusercontent.com/91226847/169660147-62b7819e-7e01-4a21-b0dd-a014b15fdea5.png)
 ![pagedrinks](https://user-images.githubusercontent.com/91226847/169660145-ed3efd07-34e8-4b86-811a-412480b8d307.png)
 ![pagedrinks2](https://user-images.githubusercontent.com/91226847/169660142-33972e00-4574-421f-a1a7-508c33d8d5ab.png)
